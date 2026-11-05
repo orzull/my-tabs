@@ -1,0 +1,17 @@
+{
+ "title": "Man In The Box", "artist": "Alice In Chains",
+ "key": "Em", "bpm": 108, "tuning": "½ tono abajo (Eb Ab Db Gb) — notas como si fuera estándar",
+ "sections": [
+  {"id":"intro","name":"Intro","lines":["E F F# | E E E E","E . E E | E . E E"],"repeat":2,"hint":"entra con la subida cromática E-F-F#; luego pedal en E con palm mute"},
+  {"id":"verso","name":"Verso","lines":["E . E E | E . E E A-B | E D E D E"],"repeat":3,"hint":"A-B es un ligado (hammer-on) en la cuerda E; sigue a la batería"},
+  {"id":"pre","name":"Pre-estribillo","lines":["G G A# A# B B C C | G G B B A# A# A A","E . E E | E E E E E E E E"],"repeat":1,"hint":"cromático subiendo y bajando; cierra con corcheas en E"},
+  {"id":"estribillo","name":"Estribillo","lines":["E . E | G . G G G G | D D D D D | A A A A A"],"repeat":4,"hint":"notas largas y pesadas; la última vuelta deja sonar"},
+  {"id":"solo","name":"Solo","lines":["G G G G G G G G"],"repeat":4,"hint":"ritmo del pre-estribillo pero fijo en G"},
+  {"id":"outro","name":"Outro","lines":["E F F# | E E E E"],"repeat":2,"hint":"vuelve el riff de la intro; final corta en seco"}
+ ],
+ "structure": [
+  {"id":"intro","repeat":1},{"id":"verso","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},
+  {"id":"verso","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},
+  {"id":"solo","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},{"id":"outro","repeat":1}
+ ]
+}
