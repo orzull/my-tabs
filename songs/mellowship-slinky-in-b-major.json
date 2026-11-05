@@ -1,0 +1,17 @@
+{
+ "title": "Mellowship Slinky in B Major", "artist": "Red Hot Chili Peppers",
+ "key": "B", "bpm": 94, "tuning": "Estándar (E A D G)",
+ "sections": [
+  {"id":"intro","name":"Intro","lines":["C# C B A D D# | E' E E B D B E' E' D E' (×3)","C# C B A D D# | E' E E B D B E' E | D#' A' F#' B"],"repeat":1,"hint":"bajada cromática en la cuerda A (4-3-2-0) y subida 5-6-7; luego mezcla E grave al aire con B; el remate D#' A' F#' B ya es el arpegio del verso"},
+  {"id":"verso","name":"Verso","lines":["B' B' x B' B' x D#' A' F#' B | B' B' x A' A' x D#' A' F#' B","B' B' x B' B' x D#' A' F#' B | B' A#' A' x D#' A' F#' B","B' B' x B' B' x D#' A' F#' B | B' B' x B' A' x D#' A' F#' B","B' B' x B' B' x D#' A' F#' B | B A# A x D#' A' F#' B"],"repeat":1,"hint":"B en la cuerda D (traste 9) con notas muertas; cada compás cierra con el arpegio bajando D#' A' F#' B (cuerdas G-D-A-E); último compás: bajada B A# A en la E"},
+  {"id":"interludio","name":"Interludio (fin verso 1)","lines":["B' A#' A' F'~F#' F' | E' D E' F'~F#' A' A#'"],"repeat":1,"hint":"bajada cromática y slide 8→9 en la cuerda A; sube hasta A#' para volver al verso"},
+  {"id":"pre","name":"Pre-estribillo","lines":["B' A#' A' F#' D"],"repeat":1,"hint":"remate corto tras el verso 2 y 3: bajada cromática y cae a D para entrar al estribillo"},
+  {"id":"estribillo","name":"Estribillo","lines":["E' D E' D E' D E' G' E' C# | D C# D C# D C# D G' C# D (×3)","G' F#' F' D"],"repeat":1,"hint":"alterna dos notas vecinas en la cuerda A (7-5, luego 5-4) con un G' en la cuerda D; cierre: bajada cromática G' F#' F' y D"},
+  {"id":"solo","name":"Solo","lines":["B D E' F#' B | A#~B D E' F#' B (×2)","A' G'~A' F#' F' E' | G'~A' F#' F' E'","G~A G F# F E | G~A G F# D#' A' F#' B"],"repeat":1,"hint":"escalón B-D-E-F# con slide 1→2 en la A; luego bajadas cromáticas, primero en la cuerda D y después en la E grave; remata con el arpegio del verso"},
+  {"id":"outro","name":"Outro","lines":["C# C B A D D# | E' E E B D B E' E' D E' (×3)","C# C B A D D# | E' E E B D B E"],"repeat":1,"hint":"igual que el intro; última vez: termina en la E grave al aire"}
+ ],
+ "structure": [
+  {"id":"intro","repeat":1},{"id":"verso","repeat":1},{"id":"interludio","repeat":1},{"id":"verso","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},
+  {"id":"verso","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},{"id":"solo","repeat":1},{"id":"outro","repeat":1}
+ ]
+}
