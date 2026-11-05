@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Mis temas" />
-        <meta name="theme-color" content="#0e0f12" />
+        <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)" />
         <link rel="manifest" href="manifest.webmanifest" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
@@ -21,12 +22,12 @@
 
         <style>
   html, body { margin: 0; height: 100%; background: #0e0f12; color: #f2f3f5; color-scheme: dark; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { font-family: ui-rounded, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
   .hidden { display: none !important; }
   .staticrypt-content { min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
   .staticrypt-page { width: 100%; max-width: 380px; }
   .staticrypt-form { background: #17191e; border: 1px solid #2c3038; border-radius: 22px; padding: 32px 28px; text-align: center; }
-  .staticrypt-title { font-size: 1.6em; font-weight: 800; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .staticrypt-title { font-size: 1.9em; font-weight: 900; background: linear-gradient(90deg, #ec4899, #f97316); -webkit-background-clip: text; background-clip: text; color: transparent; margin: 0 0 6px; letter-spacing: -0.02em; }
   .staticrypt-instructions p:last-child { color: #8b919c; margin: 0; }
   .staticrypt-hr { border: 0; margin: 18px 0; }
   .staticrypt-password-container { position: relative; margin-bottom: 14px; }
@@ -34,14 +35,22 @@
     width: 100%; box-sizing: border-box; font-size: 18px; padding: 16px 48px 16px 16px; border-radius: 14px;
     background: #20232a; color: #f2f3f5; border: 1px solid #2c3038; outline: 0;
   }
-  .staticrypt-form input:focus { border-color: #ffb547; }
+  .staticrypt-form input:focus { border-color: #ec4899; }
   .staticrypt-toggle-password-visibility { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; cursor: pointer; filter: invert(1); opacity: .55; }
   label.staticrypt-remember { display: flex; align-items: center; gap: 10px; justify-content: center; color: #8b919c; margin-bottom: 16px; }
-  .staticrypt-remember input { transform: scale(1.3); accent-color: #ffb547; }
-  .staticrypt-decrypt-button { width: 100%; border: 0; border-radius: 14px; padding: 16px; font-size: 17px; font-weight: 700; background: #ffb547; color: #1a1203; cursor: pointer; -webkit-appearance: none; }
+  .staticrypt-remember input { transform: scale(1.3); accent-color: #ec4899; }
+  .staticrypt-decrypt-button { width: 100%; border: 0; border-radius: 14px; padding: 16px; font-size: 17px; font-weight: 700; background: #ec4899; color: #fff; cursor: pointer; -webkit-appearance: none; }
   .staticrypt-spinner-container { height: 100%; display: flex; align-items: center; justify-content: center; }
   .staticrypt-spinner { width: 2rem; height: 2rem; border: .25em solid #8b919c; border-right-color: transparent; border-radius: 50%; animation: spin .75s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-color-scheme: light) {
+    html, body { background: #faf7f2; color: #1d1b22; color-scheme: light; }
+    .staticrypt-form { background: #fff; border-color: #e8e2d8; box-shadow: 0 4px 14px rgba(40,30,20,.06); }
+    .staticrypt-instructions p:last-child, label.staticrypt-remember { color: #7a7480; }
+    .staticrypt-form input[type="password"], .staticrypt-form input[type="text"] { background: #f1ede6; color: #1d1b22; border-color: #e8e2d8; }
+    .staticrypt-toggle-password-visibility { filter: none; }
+  }
 </style>
     </head>
 
