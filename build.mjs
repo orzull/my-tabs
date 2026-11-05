@@ -19,7 +19,8 @@ for (const s of songs) {
 const version = new Date().toISOString();
 const html = readFileSync('src/app.html', 'utf8')
   .replace('/*SONGS*/[]', JSON.stringify(songs).replace(/</g, '\\u003c'))
-  .replace('/*VERSION*/', version);
+  .replace('/*VERSION*/', version)
+  .replace('/*NOSLEEP*/', () => readFileSync('src/vendor/NoSleep.min.js', 'utf8'));
 mkdirSync('build', { recursive: true });
 writeFileSync('build/index.html', html);
 cpSync('public', 'build', { recursive: true });

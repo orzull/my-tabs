@@ -112,18 +112,40 @@
   .song-card__parts i[data-kind="estribillo"] { background: var(--accent); }
 
   /* ---------- Song ---------- */
-  .song-head { display: flex; align-items: center; gap: 12px; padding: 12px 0 8px; flex-wrap: wrap; }
-  .song-head__title { flex: 1; min-width: 200px; }
-  .song-head__title h1 { margin: 0; font-size: 1.45em; font-weight: 900; letter-spacing: -0.02em; line-height: 1.15; }
-  .song-head__title span { color: var(--muted); font-weight: 600; font-size: .9em; }
+  .song-head { display: flex; align-items: center; gap: 10px; padding: 10px 0 8px; flex-wrap: wrap; }
+  .back {
+    width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex: none;
+    background: var(--surface-2); color: var(--muted); font-size: 1.5em; font-weight: 700; line-height: 1; padding-bottom: 3px;
+  }
+  .song-head h1 { margin: 0; flex: 1; min-width: 180px; font-size: 1.3em; font-weight: 900; letter-spacing: -0.02em; line-height: 1.2; }
+  .song-head h1 span { color: var(--muted); font-weight: 600; font-size: .7em; letter-spacing: 0; margin-left: 6px; white-space: nowrap; }
   .song-head__meta { display: flex; flex-wrap: wrap; gap: 6px; }
   .tools { display: flex; gap: 6px; }
 
-  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; padding: 0 0 12px; font-size: .82em; font-weight: 700; }
-  .flow span { color: var(--muted); white-space: nowrap; }
-  .flow span[data-kind="estribillo"] { color: var(--accent); }
-  .flow span i { font-style: normal; opacity: .7; }
-  .flow b { color: var(--soft); font-weight: 600; margin: 0 4px; }
+  .menu { position: relative; flex: none; }
+  .menu summary {
+    list-style: none; cursor: pointer; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--surface-2); color: var(--muted); font-size: .7em; letter-spacing: 1px; font-weight: 900;
+  }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu[open] summary { background: var(--text); color: var(--bg); }
+  .menu__panel {
+    position: absolute; right: 0; top: 44px; z-index: 20; width: max-content; min-width: 280px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 6px 14px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.18);
+  }
+  .menu__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; font-size: .9em; font-weight: 600; color: var(--muted); }
+  .menu__row + .menu__row { border-top: 1px solid var(--line); }
+
+  .flow { list-style: none; margin: 0; padding: 0 0 12px; display: flex; flex-wrap: wrap; gap: 6px; counter-reset: part; }
+  .flow li {
+    counter-increment: part; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    padding: 6px 11px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line);
+    font-size: .95em; font-weight: 800; color: var(--text);
+  }
+  .flow li::before { content: counter(part); font-size: .72em; font-weight: 700; color: var(--soft); }
+  .flow li i { font-style: normal; color: var(--accent); font-weight: 900; }
+  .flow li[data-kind="estribillo"] { background: color-mix(in srgb, var(--accent) var(--tint), var(--surface)); border-color: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); }
 
   .sections { display: grid; grid-template-columns: 1fr; gap: 10px; padding-bottom: 30px; }
   .section {
@@ -149,7 +171,7 @@
   .hint { margin-top: 6px; color: var(--muted); font-size: .85em; font-weight: 500; }
 
   .seg { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); }
-  .seg button { padding: 0 12px; height: 32px; border-radius: 9px; font-weight: 700; font-size: .85em; color: var(--muted); }
+  .seg button { padding: 0 12px; height: 32px; white-space: nowrap; border-radius: 9px; font-weight: 700; font-size: .85em; color: var(--muted); }
   .seg button[aria-pressed="true"] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
   .tuning-note {
     margin: 0 0 10px; padding: 8px 12px; border-radius: 12px; font-size: .85em; font-weight: 600;
@@ -167,6 +189,7 @@
 <body>
 <div id="app"></div>
 
+<script>/*NOSLEEP*/</script>
 <script>
 const SONGS = /*SONGS*/[];
 const VERSION = '/*VERSION*/';
@@ -284,27 +307,30 @@ function metaChips(s, full) {
   const chips = [];
   if (s.key) chips.push(`<span class="chip">Tono <b>${esc(transposeText(s.key))}</b></span>`);
   if (s.bpm) chips.push(`<span class="chip"><b>${esc(s.bpm)}</b> BPM</span>`);
-  if (full && !isStandard(s.tuning) && prefs.get('tuningMode', 'original') === 'standard') chips.push(`<span class="chip">Afinación <b>Estándar</b></span>`);
+  if (!isStandard(s.tuning) && shift) chips.push(`<span class="chip">Notas en <b>estándar</b></span>`);
   else if (s.tuning) chips.push(`<span class="chip ${isStandard(s.tuning) ? '' : 'chip--warn'}">Afinación <b>${esc(full ? s.tuning : s.tuning.split(/[(—]/)[0].trim())}</b></span>`);
   return chips.join('');
 }
 
-// ---------- Screen wake lock ----------
-let wakeLock = null, onSong = false;
-async function setWake(on) {
-  try {
-    if (on && 'wakeLock' in navigator) {
-      if (!wakeLock) { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', () => { wakeLock = null; }); }
-    } else if (wakeLock) { await wakeLock.release(); wakeLock = null; }
-  } catch {}
+// ---------- Keep the screen on ----------
+// iOS only allows this from a tap, so it's switched on by the first tap of the session
+// (opening a song counts) and stays on while the app is open.
+let onSong = false;
+const noSleep = new NoSleep();
+function setWake(on) {
+  if (!on) return;
+  if (!noSleep.isEnabled) noSleep.enable().catch(() => {});
 }
+document.addEventListener('click', () => setWake(true), true);
+document.addEventListener('touchend', () => setWake(true), true);
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && onSong) setWake(true);
+  // the wake lock is dropped when the app goes to the background; the next tap re-enables it
+  if (document.visibilityState === 'hidden' && noSleep.isEnabled) noSleep.disable();
 });
 
 // ---------- Views ----------
 function renderHome() {
-  onSong = false; setWake(false); shift = 0;
+  onSong = false; shift = 0;
   document.title = 'Mis temas';
   const kinds = ['estribillo', 'verso', 'puente', 'intro', 'pre', 'solo', 'riff'];
   app.innerHTML = `
@@ -337,35 +363,50 @@ function renderSong(song) {
   const toStandard = altTuning && prefs.get('tuningMode', 'original') === 'standard';
   shift = toStandard ? (song.transpose || 0) : 0;
   const tuningName = (song.tuning || '').split(/[(—]/)[0].trim();
-  const tuningNote = !altTuning ? ''
-    : toStandard
-      ? `Notas para tocar en <b>afinación estándar</b> (el disco está en ${esc(tuningName)}).${song.standardNote ? ' ' + esc(song.standardNote) : ''}`
-      : `Notas para tocar con el bajo en <b>${esc(tuningName)}</b>, como en el disco.${song.originalNote ? ' ' + esc(song.originalNote) : ''}`;
 
   app.innerHTML = `
     <div class="wrap">
       <header class="song-head">
-        <a class="icon-btn" href="#/" aria-label="Volver a la lista">‹ Temas</a>
-        <div class="song-head__title"><h1>${esc(song.title)}</h1><span>${esc(song.artist)}</span></div>
-        <div class="song-head__meta">${metaChips(song, true)}</div>
-        <div class="tools">
-          ${altTuning ? `<div class="seg" role="group" aria-label="Afinación de las notas">
-            <button data-act="tuning" data-mode="original" aria-pressed="${!toStandard}">Original</button>
-            <button data-act="tuning" data-mode="standard" aria-pressed="${toStandard}">Estándar</button>
-          </div>` : ''}
-          <button class="icon-btn" data-act="smaller" aria-label="Letra más pequeña">A−</button>
-          <button class="icon-btn" data-act="bigger" aria-label="Letra más grande">A+</button>
-          <button class="icon-btn hide-sm" data-act="solfeo" aria-pressed="${prefs.get('solfeo', false)}" title="Cambiar notación">Do Re</button>
-          ${themeButton()}
-        </div>
+        <a class="back" href="#/" aria-label="Volver a la lista">‹</a>
+        <h1>${esc(song.title)} <span>${esc(song.artist)}</span></h1>
+        <div class="song-head__meta">${metaChips(song, false)}</div>
+        <details class="menu">
+          <summary aria-label="Opciones">•••</summary>
+          <div class="menu__panel">
+            ${altTuning ? `<div class="menu__row">
+              <span>Notas para afinación</span>
+              <div class="seg">
+                <button data-act="tuning" data-mode="original" aria-pressed="${!toStandard}">${esc(tuningName)}</button>
+                <button data-act="tuning" data-mode="standard" aria-pressed="${toStandard}">Estándar</button>
+              </div>
+            </div>` : ''}
+            <div class="menu__row">
+              <span>Tamaño de letra</span>
+              <div class="seg"><button data-act="smaller" aria-label="Más pequeña">A−</button><button data-act="bigger" aria-label="Más grande">A+</button></div>
+            </div>
+            <div class="menu__row">
+              <span>Notación</span>
+              <div class="seg">
+                <button data-act="solfeo" data-val="0" aria-pressed="${!prefs.get('solfeo', false)}">C D E</button>
+                <button data-act="solfeo" data-val="1" aria-pressed="${prefs.get('solfeo', false)}">Do Re Mi</button>
+              </div>
+            </div>
+            <div class="menu__row">
+              <span>Tema</span>
+              <div class="seg">
+                ${['auto', 'light', 'dark'].map(v => `<button data-act="theme" data-val="${v}" aria-pressed="${prefs.get('theme', 'auto') === v}">${{ auto: 'Auto', light: 'Claro', dark: 'Oscuro' }[v]}</button>`).join('')}
+              </div>
+            </div>
+          </div>
+        </details>
       </header>
-      <div class="flow" aria-label="Estructura">
+      <ol class="flow" aria-label="Estructura">
         ${song.structure.map(st => {
           const sec = byId[st.id];
-          return `<span data-kind="${kindOf(sec)}">${esc(sec.name)}${st.repeat > 1 ? `<i> ×${st.repeat}</i>` : ''}</span>`;
-        }).join('<b>›</b>')}
-      </div>
-      ${tuningNote ? `<p class="tuning-note">${tuningNote}</p>` : ''}
+          return `<li data-kind="${kindOf(sec)}">${esc(sec.name)}${st.repeat > 1 ? `<i>×${st.repeat}</i>` : ''}</li>`;
+        }).join('')}
+      </ol>
+      ${toStandard && song.standardNote ? `<p class="tuning-note">${esc(song.standardNote)}</p>` : ''}
       <main class="sections">
         ${song.sections.map(sec => `
           <section class="section" data-kind="${kindOf(sec)}">
@@ -384,6 +425,17 @@ function renderSong(song) {
   setWake(true); // keep the iPad from locking while a song is open
 }
 
+// Re-render the song (for notation/tuning changes) without losing scroll or the open menu
+function keepMenuOpen() {
+  const y = window.scrollY; route(); window.scrollTo(0, y);
+  const m = document.querySelector('.menu'); if (m) m.open = true;
+}
+// Close the menu when tapping outside it
+document.addEventListener('click', e => {
+  const m = document.querySelector('.menu[open]');
+  if (m && !m.contains(e.target)) m.open = false;
+});
+
 app.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b) return;
@@ -391,13 +443,16 @@ app.addEventListener('click', e => {
   if (act === 'bigger' || act === 'smaller') {
     const v = Math.round(Math.min(1.8, Math.max(0.7, prefs.get('scale', 1) + (act === 'bigger' ? 0.1 : -0.1))) * 10) / 10;
     prefs.set('scale', v); applyPrefs(); if (onSong) fitLines();
+  } else if (act === 'theme' && b.dataset.val) {
+    prefs.set('theme', b.dataset.val); applyPrefs();
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
   } else if (act === 'theme') {
     prefs.set('theme', NEXT_THEME[prefs.get('theme', 'auto')]); applyPrefs();
     b.outerHTML = themeButton();
   } else if (act === 'tuning') {
-    const y = window.scrollY; prefs.set('tuningMode', b.dataset.mode); route(); window.scrollTo(0, y);
+    prefs.set('tuningMode', b.dataset.mode); keepMenuOpen();
   } else if (act === 'solfeo') {
-    prefs.set('solfeo', !prefs.get('solfeo', false)); route();
+    prefs.set('solfeo', b.dataset.val === '1'); keepMenuOpen();
   }
 });
 
