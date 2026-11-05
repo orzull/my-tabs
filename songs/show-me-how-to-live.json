@@ -1,16 +1,111 @@
 {
- "title": "Show Me How To Live", "artist": "Audioslave",
- "key": "Em", "bpm": 90, "tuning": "Drop D (D A D G)",
+ "title": "Show Me How To Live",
+ "artist": "Audioslave",
+ "key": "Em",
+ "bpm": 90,
+ "tuning": "Drop D (D A D G)",
  "sections": [
-  {"id":"intro","name":"Intro","lines":[". . . . | . . . ."],"repeat":1,"hint":"el bajo no toca; empieza la guitarra sola"},
-  {"id":"verso","name":"Verso","lines":["D E B E . D E . D E | A Bb A . A E . E G D . D","D E B E . D E . D E | . . . ."],"repeat":1,"hint":"A Bb A = hammer y pull rápido; corcheas secas, sigue a la batería"},
-  {"id":"estribillo","name":"Estribillo","lines":["E . G . D E D E D . D E . D"],"repeat":8,"hint":"el D E del final es un hammer-on"},
-  {"id":"interludio","name":"Interludio","lines":["B . D A B A D . A D (×3)","B . D . E . E . F# . F#","B . B . A B A D . A D (×3)","B . B . B D D D# D# | E"],"repeat":1,"hint":"debajo del solo de guitarra; termina subiendo cromático D D# E"},
-  {"id":"puente","name":"Puente","lines":[". . . . | . . . . (×8)","E D x x x G E x x D | E D x x E . . . D (×3)","E D x x E . . . | E~"],"repeat":1,"hint":"primero solo voz y batería; entras en el segundo ciclo. x = nota muteada; acaba en E sostenida"},
-  {"id":"outro","name":"Outro","lines":["E . . . | E . . . . . . D","E . . . | E . . ."],"repeat":3,"hint":"notas largas; última vez: deja sonar la E"}
+  {
+   "id": "intro",
+   "name": "Intro",
+   "lines": [
+    ". . . . | . . . ."
+   ],
+   "repeat": 1,
+   "hint": "el bajo no toca; empieza la guitarra sola"
+  },
+  {
+   "id": "verso",
+   "name": "Verso",
+   "lines": [
+    "D E B E . D E . D E | A Bb A . A E . E G D . D",
+    "D E B E . D E . D E | . . . ."
+   ],
+   "repeat": 1,
+   "hint": "A Bb A = hammer y pull rápido; corcheas secas, sigue a la batería"
+  },
+  {
+   "id": "estribillo",
+   "name": "Estribillo",
+   "lines": [
+    "E . G . D E D E D . D E . D"
+   ],
+   "repeat": 8,
+   "hint": "el D E del final es un hammer-on"
+  },
+  {
+   "id": "interludio",
+   "name": "Interludio",
+   "lines": [
+    "B . D A B A D . A D (×3)",
+    "B . D . E . E . F# . F#",
+    "B . B . A B A D . A D (×3)",
+    "B . B . B D D D# D# | E"
+   ],
+   "repeat": 1,
+   "hint": "debajo del solo de guitarra; termina subiendo cromático D D# E"
+  },
+  {
+   "id": "puente",
+   "name": "Puente",
+   "lines": [
+    ". . . . | . . . . (×8)",
+    "E D x x x G E x x D | E D x x E . . . D (×3)",
+    "E D x x E . . . | E~"
+   ],
+   "repeat": 1,
+   "hint": "primero solo voz y batería; entras en el segundo ciclo. x = nota muteada; acaba en E sostenida"
+  },
+  {
+   "id": "outro",
+   "name": "Outro",
+   "lines": [
+    "E . . . | E . . . . . . D",
+    "E . . . | E . . ."
+   ],
+   "repeat": 3,
+   "hint": "notas largas; última vez: deja sonar la E"
+  }
  ],
  "structure": [
-  {"id":"intro","repeat":1},{"id":"verso","repeat":6},{"id":"estribillo","repeat":1},{"id":"verso","repeat":2},
-  {"id":"estribillo","repeat":1},{"id":"interludio","repeat":1},{"id":"puente","repeat":1},{"id":"estribillo","repeat":1},{"id":"outro","repeat":1}
- ]
+  {
+   "id": "intro",
+   "repeat": 1
+  },
+  {
+   "id": "verso",
+   "repeat": 6
+  },
+  {
+   "id": "estribillo",
+   "repeat": 1
+  },
+  {
+   "id": "verso",
+   "repeat": 2
+  },
+  {
+   "id": "estribillo",
+   "repeat": 1
+  },
+  {
+   "id": "interludio",
+   "repeat": 1
+  },
+  {
+   "id": "puente",
+   "repeat": 1
+  },
+  {
+   "id": "estribillo",
+   "repeat": 1
+  },
+  {
+   "id": "outro",
+   "repeat": 1
+  }
+ ],
+ "transpose": 0,
+ "originalNote": "La cuerda grave al aire es D.",
+ "standardNote": "Las notas son las mismas; las D más graves no llegan en estándar: tócalas una octava arriba (cuerda A, traste 5)."
 }

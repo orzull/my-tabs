@@ -23,16 +23,11 @@
     --soft: #b9b2bd;
     --shadow: 0 1px 2px rgba(40, 30, 20, .06), 0 4px 14px rgba(40, 30, 20, .06);
     --warn: #e5484d;
-    /* one colour per kind of part */
-    --c-intro: #0fa3a3;
-    --c-verso: #3b6cf6;
-    --c-pre: #8b5cf6;
-    --c-estribillo: #ec4899;
-    --c-puente: #f97316;
-    --c-solo: #16a34a;
-    --c-riff: #d99a00;
-    --c-outro: #64748b;
-    --tint: 9%;
+    /* sunburst: el naranja tostado de un Precision de los 90 */
+    --accent: #d2601a;
+    --accent-deep: #6e2c0e;
+    --accent-light: #f0a23b;
+    --tint: 11%;
     --scale: 1;
     color-scheme: light;
   }
@@ -42,9 +37,8 @@
       --text: #f4f3f7; --muted: #9a98a6; --soft: #5d5f6c;
       --shadow: 0 1px 2px rgba(0,0,0,.3);
       --warn: #ff6b6f;
-      --c-intro: #2dd4bf; --c-verso: #6b93ff; --c-pre: #a78bfa; --c-estribillo: #f472b6;
-      --c-puente: #fb923c; --c-solo: #4ade80; --c-riff: #facc15; --c-outro: #94a3b8;
-      --tint: 14%;
+      --accent: #ff8a3d; --accent-deep: #c2410c; --accent-light: #ffc46b;
+      --tint: 15%;
       color-scheme: dark;
     }
   }
@@ -53,9 +47,8 @@
     --text: #f4f3f7; --muted: #9a98a6; --soft: #5d5f6c;
     --shadow: 0 1px 2px rgba(0,0,0,.3);
     --warn: #ff6b6f;
-    --c-intro: #2dd4bf; --c-verso: #6b93ff; --c-pre: #a78bfa; --c-estribillo: #f472b6;
-    --c-puente: #fb923c; --c-solo: #4ade80; --c-riff: #facc15; --c-outro: #94a3b8;
-    --tint: 14%;
+    --accent: #ff8a3d; --accent-deep: #c2410c; --accent-light: #ffc46b;
+    --tint: 15%;
     color-scheme: dark;
   }
 
@@ -88,21 +81,13 @@
   .chip--warn { background: color-mix(in srgb, var(--warn) var(--tint), transparent); color: var(--warn); }
   .chip--warn b { color: var(--warn); }
 
-  /* section colours */
-  [data-kind="intro"] { --c: var(--c-intro); }
-  [data-kind="verso"] { --c: var(--c-verso); }
-  [data-kind="pre"] { --c: var(--c-pre); }
-  [data-kind="estribillo"] { --c: var(--c-estribillo); }
-  [data-kind="puente"] { --c: var(--c-puente); }
-  [data-kind="solo"] { --c: var(--c-solo); }
-  [data-kind="riff"] { --c: var(--c-riff); }
-  [data-kind="outro"] { --c: var(--c-outro); }
+  [data-kind] { --c: var(--accent); }
 
   /* ---------- Home ---------- */
   .home-head { padding: 34px 0 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .home-head h1 {
     margin: 0; font-size: 2.6em; font-weight: 900; letter-spacing: -0.03em;
-    background: linear-gradient(90deg, var(--c-estribillo), var(--c-puente) 55%, var(--c-riff));
+    background: linear-gradient(90deg, var(--accent-deep), var(--accent) 50%, var(--accent-light));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .home-head p { margin: 2px 0 0; color: var(--muted); font-weight: 600; }
@@ -114,13 +99,14 @@
   .song-card:active { transform: scale(.98); }
   .song-card__num {
     width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-weight: 900; color: #fff;
-    background: var(--c); margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent) 60%, var(--accent-light)); margin-bottom: 14px;
   }
   .song-card__title { font-size: 1.3em; font-weight: 800; letter-spacing: -0.01em; }
   .song-card__artist { color: var(--muted); font-weight: 600; margin-top: 1px; }
   .song-card__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
   .song-card__parts { display: flex; gap: 3px; margin-top: 14px; height: 6px; }
-  .song-card__parts i { flex: 1; border-radius: 3px; background: var(--c); }
+  .song-card__parts i { flex: 1; border-radius: 3px; background: var(--line); }
+  .song-card__parts i[data-kind="estribillo"] { background: var(--accent); }
 
   /* ---------- Song ---------- */
   .song-head { display: flex; align-items: center; gap: 12px; padding: 12px 0 8px; flex-wrap: wrap; }
@@ -131,14 +117,15 @@
   .tools { display: flex; gap: 6px; }
 
   .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 2px; padding: 0 0 12px; font-size: .82em; font-weight: 700; }
-  .flow span { color: var(--c); white-space: nowrap; }
+  .flow span { color: var(--muted); white-space: nowrap; }
+  .flow span[data-kind="estribillo"] { color: var(--accent); }
   .flow span i { font-style: normal; opacity: .7; }
   .flow b { color: var(--soft); font-weight: 600; margin: 0 4px; }
 
   .sections { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: 10px; padding-bottom: 30px; }
   .section {
     background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px 12px;
-    box-shadow: var(--shadow); border-top: 4px solid var(--c);
+    box-shadow: var(--shadow);
   }
   .section__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
   .section__name { font-size: .78em; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: var(--c); }
@@ -156,6 +143,15 @@
   .times { color: var(--c); font-weight: 900; font-size: .72em; align-self: center; }
   .tok { color: var(--muted); font-size: .7em; align-self: center; font-weight: 600; }
   .hint { margin-top: 6px; color: var(--muted); font-size: .85em; font-weight: 500; }
+
+  .seg { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); }
+  .seg button { padding: 0 12px; height: 32px; border-radius: 9px; font-weight: 700; font-size: .85em; color: var(--muted); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+  .tuning-note {
+    margin: 0 0 10px; padding: 8px 12px; border-radius: 12px; font-size: .85em; font-weight: 600;
+    background: color-mix(in srgb, var(--accent) var(--tint), transparent); color: var(--text);
+  }
+  .tuning-note b { color: var(--accent); }
 
   @media (max-width: 600px) {
     .home-head h1 { font-size: 2.1em; }
@@ -214,11 +210,29 @@ function kindOf(sec) {
 const SOLFEO = { C: 'Do', D: 'Re', E: 'Mi', F: 'Fa', G: 'Sol', A: 'La', B: 'Si' };
 const NOTE_RE = /^([A-G])([#b♯♭]?)(\d*)$/;
 
+// Semitones to add to the written notes (≠ 0 when showing a down-tuned song for standard tuning)
+let shift = 0;
+const SEMI = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+const SHARPS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const FLATS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+function transposeNote(letter, acc, n) {
+  if (!n) return [letter, acc];
+  const v = (SEMI[letter] + (/[#♯]/.test(acc) ? 1 : acc ? -1 : 0) + n + 120) % 12;
+  const name = (n < 0 ? FLATS : SHARPS)[v];
+  return [name[0], name.slice(1)];
+}
+// Transposes note names inside free text (keys like "Em", hints like "pedal en E")
+function transposeText(s) {
+  if (!shift) return s;
+  return s.replace(/\b([A-G])([#♯b♭]?)(?=m\b|[^\wáéíóúñ]|$)/g, (_, l, a) => transposeNote(l, a, shift).join(''));
+}
+
 function noteHTML(tok) {
   const m = tok.match(NOTE_RE);
   if (!m) return null;
-  const name = prefs.get('solfeo', false) ? SOLFEO[m[1]] : m[1];
-  const acc = m[2] === '#' || m[2] === '♯' ? '♯' : m[2] ? '♭' : '';
+  const [letter, accRaw] = transposeNote(m[1], m[2], shift);
+  const name = prefs.get('solfeo', false) ? SOLFEO[letter] : letter;
+  const acc = accRaw === '#' || accRaw === '♯' ? '♯' : accRaw ? '♭' : '';
   return `<span class="n">${name}${acc}${m[3] ? `<sup>${m[3]}</sup>` : ''}</span>`;
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -247,9 +261,10 @@ const isStandard = t => !t || /^est[aá]ndar/i.test(t);
 
 function metaChips(s, full) {
   const chips = [];
-  if (s.key) chips.push(`<span class="chip">Tono <b>${esc(s.key)}</b></span>`);
+  if (s.key) chips.push(`<span class="chip">Tono <b>${esc(transposeText(s.key))}</b></span>`);
   if (s.bpm) chips.push(`<span class="chip"><b>${esc(s.bpm)}</b> BPM</span>`);
-  if (s.tuning) chips.push(`<span class="chip ${isStandard(s.tuning) ? '' : 'chip--warn'}">Afinación <b>${esc(full ? s.tuning : s.tuning.split(/[(—]/)[0].trim())}</b></span>`);
+  if (full && !isStandard(s.tuning) && prefs.get('tuningMode', 'original') === 'standard') chips.push(`<span class="chip">Afinación <b>Estándar</b></span>`);
+  else if (s.tuning) chips.push(`<span class="chip ${isStandard(s.tuning) ? '' : 'chip--warn'}">Afinación <b>${esc(full ? s.tuning : s.tuning.split(/[(—]/)[0].trim())}</b></span>`);
   return chips.join('');
 }
 
@@ -263,12 +278,12 @@ async function setWake(on) {
   } catch {}
 }
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && onSong && prefs.get('awake', true)) setWake(true);
+  if (document.visibilityState === 'visible' && onSong) setWake(true);
 });
 
 // ---------- Views ----------
 function renderHome() {
-  onSong = false; setWake(false);
+  onSong = false; setWake(false); shift = 0;
   document.title = 'Mis temas';
   const kinds = ['estribillo', 'verso', 'puente', 'intro', 'pre', 'solo', 'riff'];
   app.innerHTML = `
@@ -297,7 +312,14 @@ function renderSong(song) {
   onSong = true;
   document.title = `${song.title} · Mis temas`;
   const byId = Object.fromEntries(song.sections.map(s => [s.id, s]));
-  const awake = prefs.get('awake', true);
+  const altTuning = !isStandard(song.tuning);
+  const toStandard = altTuning && prefs.get('tuningMode', 'original') === 'standard';
+  shift = toStandard ? (song.transpose || 0) : 0;
+  const tuningName = (song.tuning || '').split(/[(—]/)[0].trim();
+  const tuningNote = !altTuning ? ''
+    : toStandard
+      ? `Notas para tocar en <b>afinación estándar</b> (el disco está en ${esc(tuningName)}).${song.standardNote ? ' ' + esc(song.standardNote) : ''}`
+      : `Notas para tocar con el bajo en <b>${esc(tuningName)}</b>, como en el disco.${song.originalNote ? ' ' + esc(song.originalNote) : ''}`;
 
   app.innerHTML = `
     <div class="wrap">
@@ -306,10 +328,13 @@ function renderSong(song) {
         <div class="song-head__title"><h1>${esc(song.title)}</h1><span>${esc(song.artist)}</span></div>
         <div class="song-head__meta">${metaChips(song, true)}</div>
         <div class="tools">
+          ${altTuning ? `<div class="seg" role="group" aria-label="Afinación de las notas">
+            <button data-act="tuning" data-mode="original" aria-pressed="${!toStandard}">Original</button>
+            <button data-act="tuning" data-mode="standard" aria-pressed="${toStandard}">Estándar</button>
+          </div>` : ''}
           <button class="icon-btn" data-act="smaller" aria-label="Letra más pequeña">A−</button>
           <button class="icon-btn" data-act="bigger" aria-label="Letra más grande">A+</button>
           <button class="icon-btn hide-sm" data-act="solfeo" aria-pressed="${prefs.get('solfeo', false)}" title="Cambiar notación">Do Re</button>
-          <button class="icon-btn" data-act="awake" aria-pressed="${awake}" title="Mantener la pantalla encendida" aria-label="Mantener la pantalla encendida">💡</button>
           ${themeButton()}
         </div>
       </header>
@@ -319,6 +344,7 @@ function renderSong(song) {
           return `<span data-kind="${kindOf(sec)}">${esc(sec.name)}${st.repeat > 1 ? `<i> ×${st.repeat}</i>` : ''}</span>`;
         }).join('<b>›</b>')}
       </div>
+      ${tuningNote ? `<p class="tuning-note">${tuningNote}</p>` : ''}
       <main class="sections">
         ${song.sections.map(sec => `
           <section class="section" data-kind="${kindOf(sec)}">
@@ -327,13 +353,13 @@ function renderSong(song) {
               ${sec.repeat > 1 ? `<div class="section__repeat">×${sec.repeat}</div>` : ''}
             </div>
             ${sec.lines.map(l => `<div class="line">${lineHTML(l)}</div>`).join('')}
-            ${sec.hint ? `<div class="hint">${esc(sec.hint)}</div>` : ''}
+            ${sec.hint ? `<div class="hint">${esc(transposeText(sec.hint))}</div>` : ''}
           </section>`).join('')}
       </main>
     </div>`;
 
   window.scrollTo(0, 0);
-  if (awake) setWake(true);
+  setWake(true); // keep the iPad from locking while a song is open
 }
 
 app.addEventListener('click', e => {
@@ -346,10 +372,10 @@ app.addEventListener('click', e => {
   } else if (act === 'theme') {
     prefs.set('theme', NEXT_THEME[prefs.get('theme', 'auto')]); applyPrefs();
     b.outerHTML = themeButton();
+  } else if (act === 'tuning') {
+    const y = window.scrollY; prefs.set('tuningMode', b.dataset.mode); route(); window.scrollTo(0, y);
   } else if (act === 'solfeo') {
     prefs.set('solfeo', !prefs.get('solfeo', false)); route();
-  } else if (act === 'awake') {
-    const on = !prefs.get('awake', true); prefs.set('awake', on); b.setAttribute('aria-pressed', on); setWake(on);
   }
 });
 
