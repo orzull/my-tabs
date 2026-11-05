@@ -41,7 +41,7 @@ jobs:
             --template-remember "Recordarme en este dispositivo" --template-error "Contraseña incorrecta" \
             --template-toggle-show "Mostrar contraseña" --template-toggle-hide "Ocultar contraseña"
           cd ..
-          cp public/* dist/
+          cp public/* build/version.json dist/
           if grep -q '"title"' dist/index.html; then echo "::error::dist/index.html no está cifrado"; exit 1; fi
 
       - uses: actions/configure-pages@v5

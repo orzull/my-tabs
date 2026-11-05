@@ -168,6 +168,23 @@
 
 <script>
 const SONGS = /*SONGS*/[];
+const VERSION = '/*VERSION*/';
+
+// Home-screen apps on the iPad have no reload button and GitHub Pages lets the
+// browser keep a copy for 10 minutes: check for a newer build on every open.
+async function checkForUpdate() {
+  try {
+    const r = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' });
+    const { version } = await r.json();
+    if (version && version !== VERSION && !sessionStorage.getItem('reloaded-for-' + version)) {
+      sessionStorage.setItem('reloaded-for-' + version, '1');
+      await fetch('./', { cache: 'reload' }); // refresh the cached page before reloading
+      location.reload();
+    }
+  } catch {}
+}
+checkForUpdate();
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkForUpdate(); });
 
 const $ = (s, el = document) => el.querySelector(s);
 const app = $('#app');
@@ -292,7 +309,7 @@ function renderHome() {
   app.innerHTML = `
     <div class="wrap">
       <header class="home-head">
-        <div><h1>Mis temas</h1><p>${SONGS.length} temas para el bajo</p></div>
+        <div><h1>Mis temas</h1><p>${SONGS.length} temas para el bajo · actualizado ${new Date(VERSION).toLocaleString('es', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</p></div>
         <div class="tools">${themeButton()}</div>
       </header>
       <div class="song-list">

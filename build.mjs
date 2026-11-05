@@ -16,8 +16,12 @@ for (const s of songs) {
   for (const st of s.structure) if (!ids.has(st.id)) throw new Error(`${s.slug}: structure uses unknown section "${st.id}"`);
 }
 
-const html = readFileSync('src/app.html', 'utf8').replace('/*SONGS*/[]', JSON.stringify(songs).replace(/</g, '\\u003c'));
+const version = new Date().toISOString();
+const html = readFileSync('src/app.html', 'utf8')
+  .replace('/*SONGS*/[]', JSON.stringify(songs).replace(/</g, '\\u003c'))
+  .replace('/*VERSION*/', version);
 mkdirSync('build', { recursive: true });
 writeFileSync('build/index.html', html);
 cpSync('public', 'build', { recursive: true });
+writeFileSync('build/version.json', JSON.stringify({ version }));
 console.log(`build/index.html — ${songs.length} temas`);
