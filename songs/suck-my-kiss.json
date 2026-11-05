@@ -2,12 +2,12 @@
  "title": "Suck My Kiss", "artist": "Red Hot Chili Peppers",
  "key": "Fm (versos) / E (estribillo)", "bpm": 88, "tuning": "Estándar (E A D G)",
  "sections": [
-  {"id":"intro","name":"Intro","lines":["F G A# F G | F G A# F G | F G A# F G","C~D D D | F F F F | G~A A A | D~E E E"],"repeat":2,"hint":"los 3 primeros compases iguales; el 4.º sube con slides (C→D, G→A, D→E)"},
+  {"id":"intro","name":"Intro","lines":["F G A# F G | F G A# F G | F G A# F G","C~D D D | F' F' F' F' | G'~A' A' A' | D'~E' E' E'"],"repeat":2,"hint":"los 3 primeros compases iguales; el 4.º sube con slides (C→D, G→A, D→E)"},
   {"id":"verso","name":"Verso","lines":["F G G F G G | F G G F G A# C A# F"],"repeat":1,"hint":"riff con swing; A# C A# es un hammer-pull rápido"},
   {"id":"pre","name":"Pre-estribillo","lines":["F . F C | F C# F C#"],"repeat":1,"hint":"corte de cierre del verso; sube a C# para preparar el estribillo"},
-  {"id":"estribillo","name":"Estribillo","lines":["E E G D G D E | A A"],"repeat":5,"hint":"E al aire, golpeado; en la 3.ª y 4.ª vuelta, relleno de E al aire en semicorcheas"},
-  {"id":"solo","name":"Solo","lines":["F G A# F G | F G A# F G | F G A# F G","C~D D D | F F F F | G~A A A | D~E E E"],"repeat":2,"hint":"igual que la intro, debajo del solo de guitarra"},
-  {"id":"outro","name":"Outro","lines":["E E G D G D E | A A"],"repeat":4,"hint":"última vez: corta en seco con la batería"}
+  {"id":"estribillo","name":"Estribillo","lines":["E E G' D G' D E | A A"],"repeat":5,"hint":"E al aire, golpeado; en la 3.ª y 4.ª vuelta, relleno de E al aire en semicorcheas"},
+  {"id":"solo","name":"Solo","lines":["F G A# F G | F G A# F G | F G A# F G","C~D D D | F' F' F' F' | G'~A' A' A' | D'~E' E' E'"],"repeat":2,"hint":"igual que la intro, debajo del solo de guitarra"},
+  {"id":"outro","name":"Outro","lines":["E E G' D G' D E | A A"],"repeat":4,"hint":"última vez: corta en seco con la batería"}
  ],
  "structure": [
   {"id":"intro","repeat":1},{"id":"verso","repeat":4},{"id":"pre","repeat":1},{"id":"verso","repeat":2},{"id":"pre","repeat":1},

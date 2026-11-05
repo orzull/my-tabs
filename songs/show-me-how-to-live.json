@@ -18,8 +18,8 @@
    "id": "verso",
    "name": "Verso",
    "lines": [
-    "D E B E . D E . D E | A Bb A . A E . E G D . D",
-    "D E B E . D E . D E | . . . ."
+    "D E B E' . D E . D E | A Bb A . A E . E G D . D",
+    "D E B E' . D E . D E | . . . ."
    ],
    "repeat": 1,
    "hint": "A Bb A = hammer y pull rápido; corcheas secas, sigue a la batería"
@@ -28,7 +28,7 @@
    "id": "estribillo",
    "name": "Estribillo",
    "lines": [
-    "E . G . D E D E D . D E . D"
+    "E . G . D E D E D . D' E' . D"
    ],
    "repeat": 8,
    "hint": "el D E del final es un hammer-on"
@@ -37,10 +37,10 @@
    "id": "interludio",
    "name": "Interludio",
    "lines": [
-    "B . D A B A D . A D (×3)",
-    "B . D . E . E . F# . F#",
-    "B . B . A B A D . A D (×3)",
-    "B . B . B D D D# D# | E"
+    "B . D' A B A D' . A D' (×3)",
+    "B . D' . E' . E' . F# . F#",
+    "B' . B . A B A D' . A D' (×3)",
+    "B' . B . B D' D' D# D# | E'"
    ],
    "repeat": 1,
    "hint": "debajo del solo de guitarra; termina subiendo cromático D D# E"

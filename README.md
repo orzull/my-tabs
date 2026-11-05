@@ -27,7 +27,7 @@ Web publicada en GitHub Pages, **cifrada con contraseña** (StatiCrypt): el cód
 }
 ```
 
-Notación en `lines`: `|` separa compases, `.` silencio o nota sostenida, `A-B` ligado, `C~D` slide, `(A)` nota de pedal o fantasma, `x` nota muteada y `(×3)` repetir la línea.
+Notación en `lines`: `|` separa compases, `D'` una octava más aguda (solo cuando esa nota sale en dos alturas en el tema), `.` silencio o nota sostenida, `A-B` ligado, `C~D` slide, `(A)` nota de pedal o fantasma, `x` nota muteada y `(×3)` repetir la línea.
 
 Las notas salen de tabs de internet: son aproximadas, así que hay que comprobarlas con la grabación.
 

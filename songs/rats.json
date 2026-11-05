@@ -2,10 +2,10 @@
  "title": "Rats", "artist": "Pearl Jam",
  "key": "E", "bpm": 112, "tuning": "Estándar (E A D G)",
  "sections": [
-  {"id":"riff","name":"Riff (intro / verso)","lines":["E E E-A-B G G G | E D B A"],"repeat":3,"hint":"E grave al aire con hammer-on A→B; muy suelto, sigue a la batería"},
-  {"id":"giro","name":"Giro","lines":["E E E-A-B G | B D"],"repeat":1,"hint":"4.ª vuelta del riff: G desliza hasta B y remata en D agudo"},
+  {"id":"riff","name":"Riff (intro / verso)","lines":["E' E E-A-B G' G' G' | E' D B A"],"repeat":3,"hint":"E grave al aire con hammer-on A→B; muy suelto, sigue a la batería"},
+  {"id":"giro","name":"Giro","lines":["E' E E-A-B G' | B' D'"],"repeat":1,"hint":"4.ª vuelta del riff: G desliza hasta B y remata en D agudo"},
   {"id":"estribillo","name":"Estribillo","lines":["A A B B | C C C C C C C ."],"repeat":2,"hint":"corcheas rectas, sube por la cuerda A: al aire, 2, 3"},
-  {"id":"solo","name":"Solo","lines":["G G G G G G G G | E-D B-A | G G G G G G G | E"],"repeat":2,"hint":"pedal en G con pull-offs E→D y B→A"},
+  {"id":"solo","name":"Solo","lines":["G' G' G' G' G' G' G' G' | E'-D B-A | G' G' G' G' G' G' G' | E'"],"repeat":2,"hint":"pedal en G con pull-offs E→D y B→A"},
   {"id":"cierre","name":"Estribillo (cierre)","lines":["A A B B | C C C C"],"repeat":1,"hint":"frase A B C que prepara el outro"},
   {"id":"outro","name":"Outro","lines":["Bb Bb Bb Bb Bb Bb Bb Bb | C C C C C C C C | G G G G G G G ."],"repeat":4,"hint":"corcheas; variaciones alrededor de G al final, fade out"}
  ],

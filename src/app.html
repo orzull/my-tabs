@@ -147,7 +147,14 @@
   .flow li i { font-style: normal; color: var(--accent); font-weight: 900; }
   .flow li[data-kind="estribillo"] { background: color-mix(in srgb, var(--accent) var(--tint), var(--surface)); border-color: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); }
 
-  .sections { display: grid; grid-template-columns: 1fr; gap: 10px; padding-bottom: 30px; }
+  .sections { display: grid; grid-template-columns: 1fr; gap: 10px; padding-bottom: 14px; }
+  .song-nav { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; padding-bottom: 40px; }
+  .song-nav a { border-radius: 16px; padding: 14px 18px; display: flex; flex-direction: column; gap: 2px; }
+  .song-nav a:active { transform: scale(.98); }
+  .song-nav small { font-weight: 700; font-size: .8em; opacity: .8; }
+  .song-nav span { font-weight: 900; font-size: 1.15em; }
+  .song-nav__prev { background: var(--surface-2); color: var(--muted); }
+  .song-nav__next { background: linear-gradient(135deg, var(--accent-deep), var(--accent) 70%); color: #fff; text-align: right; }
   .section {
     background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px 12px;
     box-shadow: var(--shadow);
@@ -161,6 +168,7 @@
   .line { font-size: calc(1.4em * var(--fit, 1)); line-height: 1.5; display: flex; flex-wrap: wrap; column-gap: .42em; }
   .line.measuring { display: inline-flex; flex-wrap: nowrap; }
   .n { font-weight: 800; letter-spacing: -0.01em; }
+  .oct { color: var(--accent); font-size: .62em; font-weight: 900; vertical-align: .55em; margin-left: 1px; letter-spacing: -0.1em; }
   .n sup { font-size: .6em; margin-left: 1px; }
   .bar { color: var(--soft); font-weight: 400; }
   .rest { color: var(--soft); font-weight: 700; }
@@ -252,7 +260,8 @@ function kindOf(sec) {
 
 // ---------- Note rendering ----------
 const SOLFEO = { C: 'Do', D: 'Re', E: 'Mi', F: 'Fa', G: 'Sol', A: 'La', B: 'Si' };
-const NOTE_RE = /^([A-G])([#b♯♭]?)(\d*)$/;
+// D' = una octava más aguda, D'' = dos
+const NOTE_RE = /^([A-G])([#b♯♭]?)('*)(\d*)$/;
 
 // Semitones to add to the written notes (≠ 0 when showing a down-tuned song for standard tuning)
 let shift = 0;
@@ -277,7 +286,8 @@ function noteHTML(tok) {
   const [letter, accRaw] = transposeNote(m[1], m[2], shift);
   const name = prefs.get('solfeo', false) ? SOLFEO[letter] : letter;
   const acc = accRaw === '#' || accRaw === '♯' ? '♯' : accRaw ? '♭' : '';
-  return `<span class="n">${name}${acc}${m[3] ? `<sup>${m[3]}</sup>` : ''}</span>`;
+  const oct = m[3] ? `<span class="oct" title="${m[3].length > 1 ? 'dos octavas' : 'una octava'} más aguda">${'↑'.repeat(m[3].length)}</span>` : '';
+  return `<span class="n">${name}${acc}${oct}${m[4] ? `<sup>${m[4]}</sup>` : ''}</span>`;
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -306,9 +316,10 @@ const isStandard = t => !t || /^est[aá]ndar/i.test(t);
 function metaChips(s, full) {
   const chips = [];
   if (s.key) chips.push(`<span class="chip">Tono <b>${esc(transposeText(s.key))}</b></span>`);
+  if (full === 'song' && JSON.stringify(s.sections).includes("'")) chips.push(`<span class="chip"><b style="color:var(--accent)">↑</b> octava aguda</span>`);
   if (s.bpm) chips.push(`<span class="chip"><b>${esc(s.bpm)}</b> BPM</span>`);
   if (!isStandard(s.tuning) && shift) chips.push(`<span class="chip">Notas en <b>estándar</b></span>`);
-  else if (s.tuning) chips.push(`<span class="chip ${isStandard(s.tuning) ? '' : 'chip--warn'}">Afinación <b>${esc(full ? s.tuning : s.tuning.split(/[(—]/)[0].trim())}</b></span>`);
+  else if (s.tuning) chips.push(`<span class="chip ${isStandard(s.tuning) ? '' : 'chip--warn'}">Afinación <b>${esc(full === true ? s.tuning : s.tuning.split(/[(—]/)[0].trim())}</b></span>`);
   return chips.join('');
 }
 
@@ -359,6 +370,8 @@ function renderSong(song) {
   onSong = true;
   document.title = `${song.title} · Mis temas`;
   const byId = Object.fromEntries(song.sections.map(s => [s.id, s]));
+  const idx = SONGS.indexOf(song);
+  const next = SONGS[idx + 1], prev = SONGS[idx - 1];
   const altTuning = !isStandard(song.tuning);
   const toStandard = altTuning && prefs.get('tuningMode', 'original') === 'standard';
   shift = toStandard ? (song.transpose || 0) : 0;
@@ -369,7 +382,8 @@ function renderSong(song) {
       <header class="song-head">
         <a class="back" href="#/" aria-label="Volver a la lista">‹</a>
         <h1>${esc(song.title)} <span>${esc(song.artist)}</span></h1>
-        <div class="song-head__meta">${metaChips(song, false)}</div>
+        <div class="song-head__meta">${metaChips(song, 'song')}</div>
+        ${next ? `<a class="back" href="#/${next.slug}" title="Siguiente: ${esc(next.title)}" aria-label="Siguiente tema: ${esc(next.title)}">›</a>` : ''}
         <details class="menu">
           <summary aria-label="Opciones">•••</summary>
           <div class="menu__panel">
@@ -418,6 +432,11 @@ function renderSong(song) {
             ${sec.hint ? `<div class="hint">${esc(transposeText(sec.hint))}</div>` : ''}
           </section>`).join('')}
       </main>
+      <nav class="song-nav">
+        ${prev ? `<a class="song-nav__prev" href="#/${prev.slug}"><small>‹ Anterior</small><span>${esc(prev.title)}</span></a>` : '<span></span>'}
+        ${next ? `<a class="song-nav__next" href="#/${next.slug}"><small>Siguiente ›</small><span>${esc(next.title)}</span></a>`
+               : `<a class="song-nav__next" href="#/"><small>Fin de la lista</small><span>Volver a los temas</span></a>`}
+      </nav>
     </div>`;
 
   window.scrollTo(0, 0);

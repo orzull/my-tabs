@@ -1,18 +1,131 @@
 {
- "title": "The Greeting Song", "artist": "Red Hot Chili Peppers",
- "key": "A", "bpm": 105, "tuning": "Estándar (E A D G)",
+ "title": "The Greeting Song",
+ "artist": "Red Hot Chili Peppers",
+ "key": "A",
+ "bpm": 105,
+ "tuning": "Estándar (E A D G)",
  "sections": [
-  {"id":"intro","name":"Intro / Verso","lines":["A . A A C C C C | A C A A A A A A"],"repeat":2,"hint":"todo en la cuerda A (al aire y traste 3), con notas muertas de slap"},
-  {"id":"interludio","name":"Interludio","lines":["B . D E E F F#"],"repeat":4,"hint":"subida cromática E-F-F#, con slide hacia abajo al final"},
-  {"id":"pre","name":"Pre-estribillo","lines":["B . D E E F F# (×3)","G-A A A A A A | G-A A A A A A"],"repeat":2,"hint":"G-A = hammer-on; el martilleo sobre A empuja al estribillo"},
-  {"id":"estribillo","name":"Estribillo","lines":["A A (A) G-A A (A) | G G (A) F# F# D E"],"repeat":4,"hint":"(A) = cuerda A al aire de pedal entre notas; bajada A-G-F#"},
-  {"id":"solo","name":"Solo","lines":["F F G-A A C | C B B A D C | A A G# G# G | G F# F# F E"],"repeat":2,"hint":"zona traste 10-12; sigue al solo de guitarra"},
-  {"id":"puente","name":"Puente","lines":["D D D C# C# C# C C | C B B B A# A (×3)","D# D# D# D D D C# C# | C# C C C B B A# A#"],"repeat":1,"hint":"bajada cromática en la cuerda A; la 2.ª línea va un semitono más arriba"},
-  {"id":"final","name":"Estribillo final","lines":["A A (A) G-A A (A) | G G (A) F# F# D E (×2)","B B (A) A-B B (A) | A A (A) G# G# E F# (×2)","A A (A) G-A A (A) | G G (A) F# F# D E (×2)","A"],"repeat":1,"hint":"sube un tono en el medio y vuelve; última vez: corta en seco en A"}
+  {
+   "id": "intro",
+   "name": "Intro / Verso",
+   "lines": [
+    "A . A A C C C C | A C A A A A A A"
+   ],
+   "repeat": 2,
+   "hint": "todo en la cuerda A (al aire y traste 3), con notas muertas de slap"
+  },
+  {
+   "id": "interludio",
+   "name": "Interludio",
+   "lines": [
+    "B . D E E F F#"
+   ],
+   "repeat": 4,
+   "hint": "subida cromática E-F-F#, con slide hacia abajo al final"
+  },
+  {
+   "id": "pre",
+   "name": "Pre-estribillo",
+   "lines": [
+    "B . D E E F F# (×3)",
+    "G-A' A' A' A' A' A' | G-A' A' A' A' A' A'"
+   ],
+   "repeat": 2,
+   "hint": "G-A = hammer-on; el martilleo sobre A empuja al estribillo"
+  },
+  {
+   "id": "estribillo",
+   "name": "Estribillo",
+   "lines": [
+    "A' A' (A) G-A' A' (A) | G G (A) F# F# D E"
+   ],
+   "repeat": 4,
+   "hint": "(A) = cuerda A al aire de pedal entre notas; bajada A-G-F#"
+  },
+  {
+   "id": "solo",
+   "name": "Solo",
+   "lines": [
+    "F F G-A' A' C' | C' G' G' F' D' C' | A' A' G# G# G | G F# F# F E"
+   ],
+   "repeat": 2,
+   "hint": "zona traste 10-12; sigue al solo de guitarra"
+  },
+  {
+   "id": "puente",
+   "name": "Puente",
+   "lines": [
+    "D D D C# C# C# C C | C B B B A# A (×3)",
+    "D# D# D# D D D C# C# | C# C C C B B A# A#"
+   ],
+   "repeat": 1,
+   "hint": "bajada cromática en la cuerda A; la 2.ª línea va un semitono más arriba"
+  },
+  {
+   "id": "final",
+   "name": "Estribillo final",
+   "lines": [
+    "A' A' (A) G-A' A' (A) | G G (A) F# F# D E (×2)",
+    "B' B' (A) A'-B' B' (A) | A' A' (A) G# G# E F# (×2)",
+    "A' A' (A) G-A' A' (A) | G G (A) F# F# D E (×2)",
+    "A"
+   ],
+   "repeat": 1,
+   "hint": "sube un tono en el medio y vuelve; última vez: corta en seco en A"
+  }
  ],
  "structure": [
-  {"id":"intro","repeat":1},{"id":"interludio","repeat":1},{"id":"intro","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},
-  {"id":"intro","repeat":1},{"id":"interludio","repeat":1},{"id":"intro","repeat":1},{"id":"pre","repeat":1},{"id":"estribillo","repeat":1},
-  {"id":"solo","repeat":1},{"id":"puente","repeat":1},{"id":"final","repeat":1}
+  {
+   "id": "intro",
+   "repeat": 1
+  },
+  {
+   "id": "interludio",
+   "repeat": 1
+  },
+  {
+   "id": "intro",
+   "repeat": 1
+  },
+  {
+   "id": "pre",
+   "repeat": 1
+  },
+  {
+   "id": "estribillo",
+   "repeat": 1
+  },
+  {
+   "id": "intro",
+   "repeat": 1
+  },
+  {
+   "id": "interludio",
+   "repeat": 1
+  },
+  {
+   "id": "intro",
+   "repeat": 1
+  },
+  {
+   "id": "pre",
+   "repeat": 1
+  },
+  {
+   "id": "estribillo",
+   "repeat": 1
+  },
+  {
+   "id": "solo",
+   "repeat": 1
+  },
+  {
+   "id": "puente",
+   "repeat": 1
+  },
+  {
+   "id": "final",
+   "repeat": 1
+  }
  ]
 }

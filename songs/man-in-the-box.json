@@ -19,7 +19,7 @@
    "id": "verso",
    "name": "Verso",
    "lines": [
-    "E . E E | E . E E A-B | E D E D E"
+    "E . E E | E . E E A-B | E D E D E'"
    ],
    "repeat": 3,
    "hint": "A-B es un ligado (hammer-on) en la cuerda E; sigue a la batería"
